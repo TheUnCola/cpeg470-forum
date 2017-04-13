@@ -1,0 +1,85 @@
+<!--<?php
+session_start();
+if(!isset($_SESSION['name']) || !isset($_SESSION['address']) || !isset($_SESSION['email'])) {
+	header('Location: /login/loginpage.html');
+}
+?>-->
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--	<head>-->
+<!--		<meta charset="UTF-8">-->
+<!--		<title>Andy's Forum</title>-->
+<!--		<link rel="stylesheet" href="styles/main.css" type="text/css"/>-->
+		
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>-->
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.min.js"></script>-->
+		
+		<!--<base href="/app"> <!-- test: for html5 angular -->
+		<!--<script src="ng/app.js"></script>-->
+		<!--<script src="ng/topic-page/topic-page.js"></script>-->
+		<!--<script src="ng/topic-page/topic-page-functions.js"></script>-->
+<!--	</head>-->
+<!--	<body>-->
+		
+<!--		<div class="all">-->
+<!--		    <div class="content">-->
+		        <!--ask user if logged in if returns login that the db recognize --> 
+		        <!--<div data-ng-include="'../ng/topic-list/topic-list.template.html'"></div>-->
+		        
+<!--		        Welcome to our form.-->
+		    
+		    
+		    
+		
+<!--		    </div>-->
+<!--		</div>-->
+<!--	</body>-->
+<!--</html>-->
+
+<!---im going to make it so that this page is the login page to the forum -->
+<!doctype html>
+<html>
+  <head>
+    <div><center><img src = "../images/team14_header.GIF"/></center></div>
+    
+    <title>Least Secure Login</title>
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	    <link rel="stylesheet" type="text/css" href="hash.css" />
+  </head>
+  
+  
+  <body>
+      <div class="string">
+        <div class="back"><a href="index.html">&lt;- Back</a></div>
+      </div>
+      
+      <div id="input">
+        <div class="back"><a href="index.html">&lt;- Back</a></div>
+        <h1>Login</h1>
+        
+        <form id="hash">
+          <input type="text" class="username" name="username" placeholder="Enter Username"></input>
+          <input type="password" class="pass" name="password" placeholder="Password"></input>
+          <input type="password" class="pass_new" name="pass_new" placeholder="New Password"></input>
+          <input type="password" class="pass_confirm" name="pass_confirm" placeholder="Confirm New Password"></input>
+          <button type="submit" class="submit" name="submit">Submit</button>
+        </form>
+        
+        <p class="echo"></p>
+        <div id="links">
+          <div><a href="index.html?view=create">Create User</a></div>
+          <div><a href="index.html?view=change">Change Pwd</a></div>
+          <div><a href="index.html?view=show">Show Users</a></div>
+        </div>
+        <div class = 'fillscreen'> <center><img class = 'makefit'src = "images\citybackgroundimage.gif"/> </center> </div>
+  
+      </div>
+    <!--   <div><img src = "images\citybackgroundimage.gif"/></div>-->
+    <script src="hash.js"></script>
+    
+  </body>
+ 
+</html>
+

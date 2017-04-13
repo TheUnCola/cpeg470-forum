@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="/styles/main.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script>
+			/*global $*/
+			'use strict';
+			$(document).ready(ready => {
+				function test(success, failure) {
+					return db.ref("students").once("value")
+					.then(
+						function(snapshot) {
+							success(blah(snapshot.val()));
+						},
+						function(error) {
+							failure(error);
+						}
+					);
+				}
+				function blah(){
+					
+				}
+				
+				
+				// change to firebase calls
+				let url = 'https://websec2-commandogn.c9users.io/topic';
+				$.get(url).then(
+					(response) => {
+						
+						
+						console.log(response);
+						
+						let frag = document.createDocumentFragment();
+						for(let i = 0; i < response.length; i++) {
+							let clone = document.importNode($('#topicTemplate')[0].content, true);
+							clone.querySelector('td').dataset['id'] = response[i]._id;
+							
+							clone.querySelector('.topicTitleSpan').innerHTML = response[i].title;
+							clone.querySelector('.topicCreatorSpan').innerHTML = response[i].creator;
+							clone.querySelector('.topicDescriptionSpan').innerHTML = response[i].description;
+							frag.appendChild(clone);
+						}
+						$('#postsGoHere').append(frag);
+					},
+					(err) => console.log(err)
+				);
+			});
+		</script>
+	</head>
+	
+	<body>
+		
+<!--<template>-->
+	<hr />
+	<div id="topicsContainer">
+		<!--<div class="topics rounded">-->
+	
+			<table class="info" id="postsGoHere">
+				<tr>
+					<th>&lt;Title of Section Topic is under&gt;</th>
+				</tr>
+				
+				<template id="topicTemplate">
+					<tr>
+						<td>
+							<div><img src="/images/msg.png" height="30px" width="30px" /></div>
+							<div>
+								<p class="title">Title: <a href="#"><span class="topicTitleSpan"></span></a></p>
+								<p class="creator">Creator: <span class="topicCreatorSpan"></span></p>
+								<p class="description">Description: <span class="topicDescriptionSpan"></span></p>
+							</div>
+							<div>
+								<!--number of posts, number of users subscribed, etc...-->
+							</div>
+						</td>
+					</tr>
+				</template>
+			</table>
+			
+		<!--</div>-->
+	</div>
+	<hr />
+<!--</template>-->
+
+	</body>
+</html>

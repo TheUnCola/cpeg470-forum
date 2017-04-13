@@ -1,0 +1,16 @@
+{
+  "name": "project2-forum",
+  "version": "0.0.1",
+  "description": "A forum, similar to reddit",
+  "author": "David Geron-Neubauer | Tianne L. | Steven Sell | Jonathan",
+  "main": "server.js",
+  "private": true,
+  "scripts": {
+    "start": "mongod  --smallfiles --syslog --fork && nodemon ./server.js",
+    "stop": "pkill nodemon && pkill node && pkill mongod ###DOESN'T WORK ATM",
+    "hello": "echo \"Hello World!!!!\""
+  },
+  "dependencies": {
+    "body-parser": "~1.13.1"
+  }
+}

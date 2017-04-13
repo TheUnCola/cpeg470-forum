@@ -1,0 +1,55 @@
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--	<head>-->
+		<!-- THIS IS THE PAGE FOR A GIVEN TOPIC (specified in the url by :topicId) -->
+<!--		<meta charset="UTF-8">-->
+<!--		<title>Andy's Forum</title>-->
+<!--		<link rel="stylesheet" type="text/css" href="../styles/main.css" />-->
+		
+<!--		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>-->
+<!--	</head>-->
+	
+	<!--<body>-->
+		!!!!!!!!!!!!EDIT ME!!!!!!!!!!!!
+		need to add js to dynamically create the page. make the api call then serve the data
+		
+		
+		<h1>TOPIC: &lt;Topic name&gt;, ({{$ctrl.topicId}})</h1>
+		<hr>
+		
+		<div id="postUserActions">
+			New Post:<br>
+			<p>Title</p>
+			<input type="text" id="postTitle" name="postTitle" />
+			<p>Details</p>
+			<textarea id ="postBody"></textarea>
+			
+			<p>Author</p>
+			<textarea id="postAuthor">To be replaced with authentication data</textarea>
+			
+			<input type="button" id="addPostButton" name="addPostButton" value="Add Post" onclick="addPost" />
+			<!--<button onclick="share-button">Share post</button>-->
+			<!--<p id = "userpost"></p>-->
+		</div>
+		
+		<hr />
+		<div>
+			<div class="posts rounded">
+				<!-- Temporary, to see what the server response was -->
+				<!--<pre>{{$ctrl.response | json}}</pre>-->
+				
+				<ul>
+					<li ng-repeat="post in $ctrl.posts">
+						 To be replaced with <post-info></post-info> 
+						<p class="author">Author: <author>{{post.author}}</author></p>
+						<p class="title">Title: {{post.title}}</p>
+						<p class="body">Body: {{post.body}}</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<hr />
+
+<!--	</body>-->
+<!--</html>-->
