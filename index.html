@@ -1,8 +1,41 @@
-
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--http://www.htmlgoodies.com/beyond/webmaster/article.php/3473341/SSI-The-Include-Command.htm-->
+		<!--#include virtual="views/commonHead.html" -->
+		<script defer src="js/main.js"></script>
+		<link rel="stylesheet" href="../styles/main.css">
+	</head>
+	<body>
+		
 		<!--#include virtual="views/header.html" -->
 		
-		<div id="login">Login Here</div>
-	        <p id="message">...</p>
-	        <button id="logout">Logout</button>
+		<div class="directory">Stuff</div>
 		
+		<div class="topicsContainer">
+			<div class="topics-header">Topics</div>
+			<template id="topicTemplate">
+				<tr>
+					<td><img src="/images/msg.png" height="30px" width="30px" /></td>
+					<td>
+						<div>
+							<p class="title"><a class="topicLink" href=""><span class="topicTitleSpan"></span></a></p>
+							<p class="description"><span class="topicDescriptionSpan"></span></p>
+						</div>
+					</td>
+						<div>
+							<!--number of posts, number of users subscribed, etc...-->
+						</div>
+					</td>
+				</tr>
+			</template>
+			<table class="info" id="topicsGoHere">
+			</table>
+		
+		</div>
+		</div>
 		<!--#include virtual="views/footer.html" -->
+		
+		</div>
+	</body>
+</html>

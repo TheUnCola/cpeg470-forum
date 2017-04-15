@@ -1,22 +1,26 @@
-<!DOCTYPE html>
-<html>
-	<head>
-		<title>Andy's Forum</title>
-		<link rel="stylesheet" type="text/css" href="styles/main.css" />
-		<!--<script src="https://cdn.firebase.com/js/client/2.0.2/firebase.js"></script>-->
-		<script src="https://www.gstatic.com/firebasejs/3.7.6/firebase.js"></script>
-		<script async src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		
-		<script defer src="firebase-init.js"></script>
-		<script defer src="js/main.js"></script>
-	</head>
-	<body>
-		<header>
-			<div class="header">
-				<img src = "../images/team14_header.GIF"/>
-			</div>
+<div class="top">
+	<div class="top-inner">
+		<button id="login">Login</button>
+		<span id="message">...</span>
+		<button id="logout">Logout</button>
+	</div>
+</div>
+<div class="all">
+	<div class="nav">
+		<!--<div class="nav-links">-->
+			<ul>
+				<li><a href="/">Home</a></li>
+				<li><a href="/">Forum</a></li>
+				<li><a href="views/members.html">Members</a></li>
+				<li><a href="views/roles.html">Roles</a></li>
+				<li><a href="views/admin.html">Admin</a></li>
+			<!--</ul>-->
+		<!--</div>-->
+		<!--<div class="nav-search">-->
 			
-			<div id="login">Login Here</div>
-			<p id="message">...</p>
-			<button id="logout">Logout</button>
-		</header>
+			
+				<li><input type="search" placeholder="Search" /></li>
+			</ul>
+		<!--</div>-->
+	</div>
+	<div class="content">

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			// redundant, but let's have it here first so if they try to go to this page,
+				// they won't load the entire page if they don't have an id specified
+			var tempTopicID = window.location.hash.substring(1);
+			if(!tempTopicID)
+				window.location.assign("/views/error.html");
+		</script>
+		<!--#include virtual="commonHead.html" -->
+		<script type="text/javascript" src="/js/newPost.js"></script>
+		
+	</head>
+	
+	<body>
+		<!--#include virtual="header.html" -->	
+		
+		<h2>Post for topic: <span id="topicTitle"></span></h2>
+		<form id="postForm" action="javascript:void(0);">
+			Title: <input type="text" name="postTitle"/>
+			Body: <textarea name="postBody"></textarea>
+			<input type="submit" name="submitButton" value="Post Your Topic!"/>
+		</form>
+		
+		
+		<!--#include virtual="footer.html" -->
+	</body>
+</html>

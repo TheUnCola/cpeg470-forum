@@ -1,61 +1,43 @@
-<hr />
-
-<table class="info" id="postsGoHere">
-	<tr>
-		<th>&lt;Title of Topic&gt; (list of posts under this specific topic below)</th>
-	</tr>
-	
-	<template id="postTemplate">
-		<tr>
-			<td>
-				<div><img src="/images/msg.png" height="30px" width="30px" /></div>
-				<div>
-					<p class="title">Title: <a href="#"><span class="postTitleSpan"></span></a></p>
-					<p class="author">Author: <span class="postAuthorSpan"></span></p>
-					<p class="body">Body: <span class="postBodySpan"></span></p>
-				</div>
-				<div>
-					<!--number of posts, number of users subscribed, etc...-->
-				</div>
-			</td>
-		</tr>
-	</template>
-</table>
-
-
-<link rel="stylesheet" type="text/css" href="/styles/main.css" />
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script>
-	/*global $*/
-	'use strict';
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			// redundant, but let's have it here first so if they try to go to this page,
+				// they won't load the entire page if they don't have an id specified
+			var tempTopicID = window.location.hash.substring(1);
+			if(!tempTopicID)
+				window.location.assign("/views/error.html");
+		</script>
 		
-		//https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
-	// var paramsString = "q=URLUtils.searchParams&topic=api";
-	var searchParams = new URLSearchParams();
-	console.log(searchParams);
+		<!--#include virtual="commonHead.html" -->
+		<script defer src="/js/postsPage.js"></script>
+	</head>
 	
-	// let something = '12345678';
-	// let url = `https://websec2-commandogn.c9users.io/topic/${something}`;
-	let url = "blah";
-	
-	
-	$.get(url).then(
-		(response) => {
-			console.log(response);
-			
-			let frag = document.createDocumentFragment();
-			for(let i = 0; i < response.length; i++) {
-				let clone = document.importNode($('#postTemplate')[0].content, true);
-				clone.querySelector('.postTitleSpan').innerHTML = response[i].title;
-				clone.querySelector('.postAuthorSpan').innerHTML = response[i].author;
-				clone.querySelector('.postBodySpan').innerHTML = response[i].body;
-				frag.appendChild(clone);
-			}
-			$('#postsGoHere').append(frag);
-		},
-		(err) => console.log(err)
-	);
-	
-	
-	
-</script>
+	<body>
+		<!--#include virtual="header.html" -->
+		
+		PUT SOME STUFF ABOUT THE TOPIC HERE PROBABLY
+		
+		<!--<tr>-->
+		<!--	<th>&lt;Title of Topic&gt; (list of posts under this specific topic below)</th>-->
+		<!--</tr>-->
+		
+		<template id="postTemplate">
+			<tr>
+				<td>
+					<div><img src="/images/msg.png" height="30px" width="30px" /></div>
+					<div>
+						<p class="title">Title: <a class="postLink" href="#"><span class="postTitleSpan"></span></a></p>
+						<p class="author">Author: <span class="postAuthorSpan"></span></p>
+						<p class="body">Body: <span class="postBodySpan"></span></p>
+					</div>
+				</td>
+			</tr>
+		</template>
+		<table class="info" id="postsGoHere">
+		</table>
+		
+		<!--#include virtual="footer.html" -->
+	</body>
+</html>
+
