@@ -1,59 +1,57 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<!--http://www.htmlgoodies.com/beyond/webmaster/article.php/3473341/SSI-The-Include-Command.htm-->
-		<!--#include virtual="views/commonHead.html" -->
-		<script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
-		<script defer src="js/main.js"></script>
-		<link rel="stylesheet" href="styles/main.css">
+		<!--#include virtual="commonHead.html" -->
+		<script defer src="../js/admin.js"></script>
 	</head>
 	<body>
 		
-		<!--#include virtual="views/header.html" -->
+		<!--#include virtual="header.html" -->
 		
-	<div class="directory"> 	<!--breadcrum bbar var ref. --> 
-		<ul class = "breadcrumb">
-			<li><a href =javascript:window.location.reload(true)>
-				<style type="text/css"> 
-			 
+		<div class="directory"> 	<!--breadcrum bbar var ref. --> 
+			<ul class = "breadcrumb">
+			<li><a href ="https://websec2-commandogn.c9users.io/index.html">
+					<style type="text/css"> 
+ 
 					 	span{height:30px; width:30px; display:block; position:relative;} 
-			
+
 						.ds1{width:30px; height:21px; display:block; position:relative; overflow:hidden;}
-			
+	
 						.ds1:before{content:''; height:10px; width:4px; display:block; position:absolute; top:10px; left:5px; border:solid #333; border-width:3px 9px 1px 9px;}
-			
+
 						.ds1:after{content:''; height:6px; width:21px; display:block; position:absolute; top:5px; left:5px; background:#333; border-radius:20px 20px 0 0;-webkit-border-radius:20px 20px 0 0;-moz-border-radius:20px 20px 0 0;-o-border-radius:20px 20px 0 0; }
-				
+	
 						.ds2:before{content:''; height:12px; width:5px; display:block; position:absolute; top:1px; left:10px; background:#333;}
-			
-			  	</style>
+
+  					</style>
 				<span class="ds1">
-					<span class="ds2"></span>
+				<span class="ds2">
+				</span>
 				</span>
 			</a></li>
+			<!--<li><a href ="https://websec2-commandogn.c9users.io/index.html">Topics</a></li-->
+			<li><a href ="javascript:window.location.reload(true)">Admin</a></li>
+		
 		</ul>
 	</div>
 		
 		<div class="topicsContainer">
 			<table class="topics-header">
 				<tr>
-					<td class="tbt">
-						<div class="tbt1">Topics</div>
-						<div class="tbt2"><a href="/views/newTopic.html"><button class="roundButton">New Topic</button></a></div>
-					</td>
+					<td class="tbt">Topics</td>
 					<td class="tbp">Posts</td>
 					<td class="tblp">Last Post</td>
 				</tr>
 			</table>
 			<template id="topicTemplate">
 				<tr>
-					<td class="tbMsg"><img src="/images/msg.png" height="30px" width="30px" /></td>
-					<td class="tbDesc">
+					<td class="tbmsg"><img src="/images/msg.png" height="30px" width="30px" /></td>
+					<td class="tbdesc">
 							<p class="title"><a class="topicLink topicTitleSpan" href=""></a></p>
 							<p class="description topicDescriptionSpan"></p>
 					</td>
-					<td class="tbPost">Posts: 0</td>
-					<td class="tbLastPost">4 April 2017 by Steven</td>
+					<td class="tbpost">Posts: 0</td>
+					<td class="tblastpost">4 April 2017 by Steven</td>
 				</tr>
 			</template>
 			<table class="info" id="topicsGoHere">
@@ -65,6 +63,6 @@
 		
 		
 		</div>
-		<!--#include virtual="views/footer.html" -->
+		<!--#include virtual="footer.html" -->
 	</body>
 </html>

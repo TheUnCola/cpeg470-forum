@@ -1,6 +1,7 @@
 /*
 global $
-global firebase
+global db
+global filterXSS
 */
 'use strict';
 
@@ -40,24 +41,16 @@ function loadTopics(topics) {
 		if(topics.hasOwnProperty(topic)) {
 			// console.log("Iterated topic: ", topics[topic]);
 			// console.log(topic);
+			// console.log(`Topic date: ${topics[topic].lastPost}`);
 			let clone = document.importNode($('#topicTemplate')[0].content, true);
 			clone.querySelector('td').dataset['id'] = topic;
 			
 			clone.querySelector('.topicLink').href = "views/posts.html#" + topic;
-			clone.querySelector('.topicTitleSpan').innerHTML = topics[topic].title;
-			// clone.querySelector('.topicCreatorSpan').innerHTML = topics[topic].creator;
-			clone.querySelector('.topicDescriptionSpan').innerHTML = topics[topic].description;
+			clone.querySelector('.topicTitleSpan').innerHTML = filterXSS(topics[topic].title);
+			clone.querySelector('.topicDescriptionSpan').innerHTML = filterXSS(topics[topic].description);
+			clone.querySelector('.tbLastPost').innerHTML = formatDate(topics[topic].lastPost);
 			frag.appendChild(clone);
 		}
 	}
 	$('#topicsGoHere').append(frag);
-    // Object.keys(topics).forEach(function (key) {
-    // 	console.log(topics[key]['description']);
-	// $("#topics").find('tbody')
-	//     .append($('<tr>')
-	//         .append($('<td>')
-	//                 .text(topics[key]['description'])
-	//             )
-	//     );
-	// });
 }

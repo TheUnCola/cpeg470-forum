@@ -1,26 +1,42 @@
 <div class="top">
+	<!--<div class="top-left">-->
+		
+	<!--</div>-->
 	<div class="top-inner">
-		<button id="login">Login</button>
-		<span id="message">...</span>
-		<button id="logout">Logout</button>
+		<div class="top-left"><a href="/"><img src="../images/logo.png" /></a></div>
+		<div class="top-right">
+	<!--	<div class = "top-right" style = 'float: right;'>-->
+			<button class="roundButton" id="login">Login</button>
+		
+			<button class="roundButton" id="logout">Logout</button>
+			<span id="message" style = "float:right">...</span>
+		</div>
 	</div>
 </div>
 <div class="all">
+	<div class="head-img">
+		<div class="fade"></div>
+		<img src="/images/cat_unicorn.jpg" class="unselectable" unselectable="on" />
+	</div>
 	<div class="nav">
-		<!--<div class="nav-links">-->
 			<ul>
 				<li><a href="/">Home</a></li>
 				<li><a href="/">Forum</a></li>
-				<li><a href="views/members.html">Members</a></li>
-				<li><a href="views/roles.html">Roles</a></li>
-				<li><a href="views/admin.html">Admin</a></li>
-			<!--</ul>-->
-		<!--</div>-->
-		<!--<div class="nav-search">-->
-			
-			
-				<li><input type="search" placeholder="Search" /></li>
+				<!--<li><a href="/views/members.html">Members</a></li>
+				<li><a href="/views/roles.html">Roles</a></li>-->
+				<li><a href="/views/admin.html">Admin</a></li>
+				<li id="right"><input id="search" type="search" placeholder="Search" /></li>
 			</ul>
-		<!--</div>-->
 	</div>
 	<div class="content">
+<script>
+	$('.head-img').click(function(){
+		if($('.head-img img').attr('src') == '/images/cat_unicorn.jpg') {
+			$('.head-img img').attr('src','/images/cat_unicorn_evil.jpg');
+			$('html').css('background-color', 'hsla(0,0%,100%,0.10)');
+		} else {
+			$('.head-img img').attr('src','/images/cat_unicorn.jpg');
+			$('html').css('background-color', 'hsla(0,0%,100%,0.40)');
+		}
+	});
+</script>

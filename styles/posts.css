@@ -1,0 +1,75 @@
+.postsContainer {
+	width:98%;
+	margin:15px auto;
+	background-color:#141618;
+}
+
+.posts-header {
+	font-size:12px;
+	letter-spacing:1px;
+	padding-left:10px;
+	color:white;
+	font-weight:700;
+	line-height:25px;
+	background: linear-gradient(to bottom, rgba(30,87,153,1) 0%,rgba(41,137,216,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%);
+}
+
+.postLink {
+	color:#67afe8;
+	font-weight: 600;
+	text-decoration:none;
+}
+.body,.tbAuthor,.tbLastEdit {
+	color:#e0e0e0;
+	font-size:12px;
+}
+.tbp,.tba,.tbAuthor,.tble,.tbLastEdit {
+	color:#e0e0e0;
+	font-size:12px;
+	text-align:center;
+	line-height:30px;
+}
+.info td {
+	padding:10px;
+}
+.tbp {
+	width:780px;
+	padding-left:10px;
+	text-align:left;
+}
+.tbp1 {
+	float:left;
+}
+.tbp2 {
+	float:right;
+}
+.tbp2 a {
+	text-decoration:none;
+}
+.tbMsg {
+	width:50px;
+	text-align:center;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+}
+.tbDesc {
+	width:600px;
+	border-bottom:1px solid gray;border-left:1px solid gray;
+}
+.tba {
+	width:180px;
+}
+.tbAuthor {
+	width:160px;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+}
+.tble {
+	width:175px;
+}
+.tbLastEdit {
+	width:150px;
+	border-left:1px solid gray;
+	border-bottom:1px solid gray;
+	border-right:1px solid gray;
+}

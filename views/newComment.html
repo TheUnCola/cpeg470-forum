@@ -1,9 +1,87 @@
-if #postId
-else if #postId/comment/id
+<!--if #postId-->
+<!--else if #postId/comment/id-->
 
-Post goes here
+<!--Post goes here-->
 
-if replying to comment
-	comment info goes here
+<!--if replying to comment-->
+<!--	comment info goes here-->
 
-Input boxes go here
+<!--Input boxes go here-->
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<script type="text/javascript">
+			// redundant, but let's have it here first so if they try to go to this page,
+				// they won't load the entire page if they don't have an id specified
+			var tempPostID = window.location.hash.substring(1);
+			if(!tempPostID)
+				window.location.assign("/views/error.html");
+		</script>
+		<!--#include virtual="/views/commonHead.html" -->
+		<script type="text/javascript" src="/js/newComment.js"></script>
+	</head>
+	
+	<body>
+		<!--#include virtual="/views/header.html" -->	
+			<div class="directory"> 	<!--bread bar ref --> 
+				<ul class = "breadcrumb">
+				<li><a href ="https://websec2-commandogn.c9users.io/index.html">
+						<style type="text/css"> 
+ 
+					 	span{height:30px; width:30px; display:block; position:relative;} 
+
+						.ds1{width:30px; height:21px; display:block; position:relative; overflow:hidden;}
+	
+						.ds1:before{content:''; height:10px; width:4px; display:block; position:absolute; top:10px; left:5px; border:solid #333; border-width:3px 9px 1px 9px;}
+
+						.ds1:after{content:''; height:6px; width:21px; display:block; position:absolute; top:5px; left:5px; background:#333; border-radius:20px 20px 0 0;-webkit-border-radius:20px 20px 0 0;-moz-border-radius:20px 20px 0 0;-o-border-radius:20px 20px 0 0; }
+	
+						.ds2:before{content:''; height:12px; width:5px; display:block; position:absolute; top:1px; left:10px; background:#333;}
+
+  					</style>
+				<span class="ds1">
+				<span class="ds2">
+				</span>
+				</span>
+				</a></li>
+				
+				<!-- need to fix it needs to go bck to the post connected to the ID -->
+			<!--	<li><a href ="javascript:window.location.assign(`/views/posts.html#${tempPostID}`)">Posts</a></li>-->
+			<!--	<li><a id="bcPosts" href="javascript:window.location.reload(true)">Posts</a></li>-->
+			<li><a href = "javascript:window.history.go(-2)">Posts</a></li>
+				<li><a href = "javascript:window.history.back()">Post & Comments</a></li>
+				<li><a href ="javascript:window.location.reload(true)">New Comments</a></li>
+				</ul>
+			</div>
+		<template id="postTemplate">
+			<tr>
+				<td class="tbMsg"><img src="/images/msg.png" height="30px" width="30px" /></td>
+				<td class="tbDesc">
+					<p class="title"><a class="postLink postTitleSpan" href="#"></a></p>
+					<p class="body postBodySpan"></p>
+				</td>
+				<td class="tbAuthor"></td>
+				<td class="tbLastEdit"></td>
+			</tr>
+		</template>
+		
+		<style> h2{color:white;}</style>
+		
+		<!--sorry my bad dave-->
+		<h2 id="whiteText">Comment for post:</h2>
+		<div class="info" id="postGoesHere">
+		<hr>
+		</div>
+		
+		<form id="commentForm" action="javascript:void(0);">
+			<p id="whiteText">(Comments can be a maximum of 200 characters)</p><br />
+			<textarea placeholder="Body" name="commentBody" maxlength="200"></textarea><br>
+			<!--<input type="submit" class="roundButton" name="submitButton" value="Post Your Comment!"/>-->
+			<input type="submit" class="roundButton" name="submitButton" value="Submit Your Comment!"/>
+
+		</form>
+		
+		<!--#include virtual="/views/footer.html" -->
+	</body>
+</html>

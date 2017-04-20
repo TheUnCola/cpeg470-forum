@@ -1,6 +1,7 @@
 /*
 global $
 global db
+global filterXSS
 */
 'use strict';
 console.log("Posts Page JS loaded.");
@@ -11,7 +12,7 @@ console.log("Posts Page JS loaded.");
 // https://www.creativejuiz.fr/blog/en/javascript-en/read-url-get-parameters-with-javascript
 // let x = new URLSearchParams(window.location);
 // let x = window.location.search.substring(1); // w/o the "?"
-var topicID = window.location.hash.substring(1);//.split("/")[0]; // substring(1) for w/o the "?"
+var topicID = filterXSS(window.location.hash.substring(1));//.split("/")[0]; // substring(1) for w/o the "?"
 // let topicID = undefined;
 if(!topicID) {// || topicID.match(/(something)/i)) {
 	window.location.assign("/views/error.html");
@@ -19,11 +20,9 @@ if(!topicID) {// || topicID.match(/(something)/i)) {
 // TODO: some sort of sanitization
 
 
-// var db = firebase.database();
 
 $(document).ready(ready => {
-	
-	
+	$('#newPostLink').attr('href', `newPost.html#${topicID}`);
 	
 	getPosts(
 		topicID,
@@ -34,7 +33,7 @@ $(document).ready(ready => {
 });
 
 $(window).on('hashchange', (evt) => {
-	topicID = window.location.hash.substring(1);
+	topicID = filterXSS(window.location.hash.substring(1));
 	console.log("Hash change triggggggererrereeed: " + topicID);
 	
 	$('#postsGoHere').html("");	// Clear everything first
@@ -59,7 +58,7 @@ function getPosts(topicID, success, failure) {
 }
 
 function loadPosts(posts) {
-	console.log(posts);
+	// console.log(posts);
 	
 	let frag = document.createDocumentFragment();
 	for(let post in posts) {
@@ -67,9 +66,10 @@ function loadPosts(posts) {
 			let clone = document.importNode($('#postTemplate')[0].content, true);
 			clone.querySelector('td').dataset['id'] = post;
 			clone.querySelector('.postLink').href = "/views/post.html#" + post;
-			clone.querySelector('.postTitleSpan').innerHTML = posts[post].title;
-			clone.querySelector('.postAuthorSpan').innerHTML = posts[post].author;
-			clone.querySelector('.postBodySpan').innerHTML = posts[post].body;
+			clone.querySelector('.postTitleSpan').innerHTML = filterXSS(posts[post].title);
+			clone.querySelector('.postBodySpan').innerHTML = filterXSS(posts[post].body);
+			clone.querySelector('.tbAuthor').innerHTML = filterXSS(posts[post].author);
+			clone.querySelector('.tbLastEdit').innerHTML = formatDate(posts[post].modifiedAt);
 			frag.appendChild(clone);
 		}
 	}

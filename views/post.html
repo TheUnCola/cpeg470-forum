@@ -1,31 +1,95 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<link rel="stylesheet" href="../styles/main.css">
+		
+		<script src="https://rawgit.com/leizongmin/js-xss/master/dist/xss.js"></script>
 		<script type="text/javascript">
 			// redundant, but let's have it here first so if they try to go to this page,
 				// they won't load the entire page if they don't have an id specified
-			var tempPostID = window.location.hash.substring(1);
+			var tempPostID = filterXSS(window.location.hash.substring(1));
 			if(!tempPostID)
 				window.location.assign("/views/error.html");
 		</script>
 		
 		<!--#include virtual="commonHead.html" -->
-		<script defer src="/js/commentPage.js"></script>
+		<script defer src="/js/postPage.js"></script>
 	</head>
 	
 	<body>
 		<!--#include virtual="header.html" -->
-		<h1>¡¡¡¡Post info here!!!!</h1>
+		<div class="directory"> 	<!--breadcrum bbar var ref. --> 
+			<ul class = "breadcrumb">
+				<li><a href ="https://websec2-commandogn.c9users.io/index.html">
+						<style type="text/css"> 
+	 
+						 	span{height:30px; width:30px; display:block; position:relative;} 
+	
+							.ds1{width:30px; height:21px; display:block; position:relative; overflow:hidden;}
 		
-		<template class="commentTemplate">
-			<tr class="comment">
-				<td>
-					<p class="author">Author: <span class="commentAuthorSpan"></span></p>
-					<p class="comment">Comment: <span class="commentBodySpan"></span></p>
+							.ds1:before{content:''; height:10px; width:4px; display:block; position:absolute; top:10px; left:5px; border:solid #333; border-width:3px 9px 1px 9px;}
+	
+							.ds1:after{content:''; height:6px; width:21px; display:block; position:absolute; top:5px; left:5px; background:#333; border-radius:20px 20px 0 0;-webkit-border-radius:20px 20px 0 0;-moz-border-radius:20px 20px 0 0;-o-border-radius:20px 20px 0 0; }
+		
+							.ds2:before{content:''; height:12px; width:5px; display:block; position:absolute; top:1px; left:10px; background:#333;}
+	
+	  					</style>
+					<span class="ds1">
+						<span class="ds2"></span>
+					</span>
+				</a></li>
+				<!--<li><a href ="https://websec2-commandogn.c9users.io/index.html">Topics</a></li>-->
+				<!--<li><a id="bcPosts" href="javascript:window.location.reload(true)">Posts & Comments</a></li>-->
+				<li><a id="bcPosts" href = "javascript:window.history.back()">Posts</a></li>
+				<li><a href = "javascript:window.location.reload(true)">Post & Comments</a></li>
+			</ul>
+		</div>
+		
+		<br>
+		
+		<table class="posts-header">
+			<tr>
+				<td class="tbt">
+					<div class="tbt1">Post Page</div>
+					<div class="tbt2"><a id="newCommentLink" href="/views/newComment.html"><button class="roundButton">New Comment</button></a></div>
 				</td>
+				<td class="tbp whiteText">Comments</td>
+				<td class="tblp whiteText">something</td>
+			</tr>
+		</table>
+		
+		<template id="postTemplate">
+			<tr>
+				<td class="tbMsg"><img src="/images/msg.png" height="30px" width="30px" /></td>
+				<td class="tbDesc">
+					<p class="title whiteText"><a class="postLink postTitleSpan" href="#"></a></p>
+					<p class="body postBodySpan whiteText"></p>
+				</td>
+				<td class="tbAuthor"></td>
+				<td class="tbLastEdit"></td>
+			</tr>
+			<a id="editPostButton" href="#" class="hidden"><button class="roundButton whiteText">Edit post</button></a>
+		</template>
+		<style>h2{color:white;}</style>
+		<h2>Post:</h2>
+		<hr>
+		<div class="whiteText info" id="postGoesHere">
+		</div>
+		
+		<hr />
+		
+		
+		<template id="commentTemplate">
+			<tr class="comment">
+				<td class="tbDesc whiteText">
+					Comment: <p class="comment commentBodySpan whiteText"></p>
+				</td>
+				<td class="tbAuthor commentAuthorSpan whiteText"></td>
 			</tr>
 		</template>
-		<table class="info" id="commentsGoHere">
+		<h3 class="whiteText">Comments</h3>
+		<hr>
+		<table class="info whiteText" id="commentsGoHere">
 		</table>
 	
 		<!--#include virtual="footer.html" -->

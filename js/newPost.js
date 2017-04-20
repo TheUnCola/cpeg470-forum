@@ -1,10 +1,12 @@
 /*
 global $
+global firebase
 global db
 global user
+global filterXSS
 */
 'use strict';
-console.log("Main Post JS loaded.");
+console.log("New Post JS loaded.");
 
 // EXPERIMENTAL (chrome and firefox, maybe safari, no IE)
 // https://developer.mozilla.org/en-US/docs/Web/API/URLSearchParams
@@ -12,51 +14,67 @@ console.log("Main Post JS loaded.");
 // https://www.creativejuiz.fr/blog/en/javascript-en/read-url-get-parameters-with-javascript
 // let x = new URLSearchParams(window.location);
 // let x = window.location.search.substring(1); // w/o the "?"
-var topicID = window.location.hash.substring(1);//.split("/")[0]; // substring(1) for w/o the "?"
-if(!topicID || !user) {// || topicID.match(/(something)/i)) {
+var topicID = filterXSS(window.location.hash.substring(1))//.split("/")[0]; // substring(1) for w/o the "?"
+// TODO make firebase function isValidTopicID()
+if(!topicID) {// || !firebase.auth().currentUser) {
+	// Don't wait until the page is loaded to check if the user is authorized to post
+	// Ik this is in the client-side, but we'll have authorization sanity checks in the firebase rules (TODO)
+	console.log("No topicID or no user");
+	console.log(`User:  + ${user}`);
+	console.log(`TopicID: ${topicID}`);
 	window.location.assign("/views/error.html");
 }
 
 
 
-// TODO: some sort of sanitization
+// TODO: some sort of client-side sanitization
 
 
 
 $(document).ready(ready => {
+	// FIXME once figured out how to fix async auth.js
+	// if(!user) {
+	// 	console.log('Not logged in');
+	// 	window.location.assign("/views/error.html");
+	// }
 	
 	getTopicTitle(
 		topicID,
-		loadTopicTitle,
-		(err) => console.log(err)
+		loadTopicTitle//,
+		// (err) => console.log(err)
 	);
 	
 	
 	$('#postForm').submit((evt) => {
-		evt.preventDefault();	
+		evt.preventDefault();
 		
 		//sanitize stuff
-		let _title = $('input[name=postTitle]').val();
-		let _body = $('textarea[name=postBody]').val();
+		let _title = filterXSS($('input[name=postTitle]').val());
+		let _body = filterXSS($('textarea[name=postBody]').val());
 		
 		let data = {
 			parentTopicID: topicID,
-			authorId: user.uid,
-			author: user.displayName,
+			authorID: user.uid,
+			author: user.displayName || "No Display Name Provided",
 			title: _title,
-			body: _body
+			body: _body,
+			createdAt: firebase.database.ServerValue.TIMESTAMP,
+			modifiedAt: firebase.database.ServerValue.TIMESTAMP
 		};
 		
-		let pushPromise = db.ref("Posts").push();
-		pushPromise.set(data).then(
+		let pushRef = db.ref("Posts").push();
+		pushRef.set(data).then(
 			(success) => {
+				db.ref("Topics").child(data.parentTopicID).update({'lastPost': data.createdAt});
+				
 				console.log("Successfully posted!");
 				// console.log(success); //undefined
 				// redirect to succesfully posted page, or new post's page (comment page for a post)
-				window.location.assign("/views/post.html#" + pushPromise.name());
+				window.location.assign("/views/post.html#" + pushRef.key);
 			},
 			(err) => {
 				console.log(err);
+				console.log("Post pushRef error");
 				window.location.assign("/views/error.html");
 			}
 		);
@@ -66,13 +84,13 @@ $(document).ready(ready => {
 
 
 $(window).on('hashchange', (evt) => {
-	topicID = window.location.hash.substring(1);
+	topicID = filterXSS(window.location.hash.substring(1));
 	console.log("Hash change triggggggererrereeed: " + topicID);
 	
 	getTopicTitle(
 		topicID,
-		loadTopicTitle,
-		(err) => console.log(err)
+		loadTopicTitle//,
+		// (err) => console.log(err)
 	);
 });
 
@@ -90,7 +108,9 @@ function getTopicTitle(id, success, err) {
 		(snapshot) => {
 			if(!!snapshot.val()) {
 				// console.log(snapshot);
-				let title = snapshot.val()[id].title;
+				// console.log(snapshot.val());
+				// console.log(snapshot.val()[id]);
+				let title = filterXSS(snapshot.val()[id].title);
 				success(title);
 			}
 			else {
@@ -100,6 +120,7 @@ function getTopicTitle(id, success, err) {
 		},
 		err || function(error) {
 			console.log(error);
+			console.log("Couldn't get topic title");
 			window.location.assign("/views/error.html");
 		}
 	);

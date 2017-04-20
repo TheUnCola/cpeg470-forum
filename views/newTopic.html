@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<!--http://www.htmlgoodies.com/beyond/webmaster/article.php/3473341/SSI-The-Include-Command.htm-->
+		<!--#include virtual="commonHead.html" -->
+		<script src="/js/newTopic.js"></script>
+	</head>
+	<body>
+		
+		<!--#include virtual="header.html" -->
+		
+	<div class="directory"> 	<!--bread bar ref --> 
+			<ul class = "breadcrumb">
+				<li><a href ="https://websec2-commandogn.c9users.io/index.html">
+					<style type="text/css"> 
+ 
+					 	span{height:30px; width:30px; display:block; position:relative;} 
+
+						.ds1{width:30px; height:21px; display:block; position:relative; overflow:hidden;}
+	
+						.ds1:before{content:''; height:10px; width:4px; display:block; position:absolute; top:10px; left:5px; border:solid #333; border-width:3px 9px 1px 9px;}
+
+						.ds1:after{content:''; height:6px; width:21px; display:block; position:absolute; top:5px; left:5px; background:#333; border-radius:20px 20px 0 0;-webkit-border-radius:20px 20px 0 0;-moz-border-radius:20px 20px 0 0;-o-border-radius:20px 20px 0 0; }
+	
+						.ds2:before{content:''; height:12px; width:5px; display:block; position:absolute; top:1px; left:10px; background:#333;}
+
+  					</style>
+				<span class="ds1">
+				<span class="ds2">
+				</span>
+				</span>
+				</a></li>
+			<li><a href ="javascript:window.location.reload(true)">New Topic</a></li>
+		
+		
+		</ul>
+	</div>
+		
+		<div class="topicsContainer">
+			<table class="topics-header">
+				<tr>
+					<h2 class="whiteText">Post for topic: </h2>
+					<form id="postForm" action="javascript:void(0);">
+						<input type="text" placeholder="Topic Title" name="topicTitle"/><br>
+						<textarea placeholder="Topic Description" name="topicDescription"></textarea><br>
+						<input id="postTopic" class="roundButton" type="submit" name="submitButton" value="Post New Topic!"/>
+					</form>
+					
+				</tr>
+			</table>
+			
+			<table class="info" id="topicsGoHere">
+			</table>
+		
+		</div>
+		
+		</div><!-- End Content Div -->
+		
+		
+		</div>
+		<!--#include virtual="footer.html" -->
+	</body>
+</html>

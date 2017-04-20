@@ -11,6 +11,6 @@
     "hello": "echo \"Hello World!!!!\""
   },
   "dependencies": {
-    "body-parser": "~1.13.1"
+    "xss": "^0.3.3"
   }
 }
